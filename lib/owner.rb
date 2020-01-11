@@ -53,10 +53,13 @@ class Owner
   def sell_pets
     Dog.all.select{|dog| dog.owner == self}.map do |dog| 
       dog.mood = "nervous"
-      dog.owner
+      dog.owner = nil
     end
       
-    Cat.all.select{|cat| cat.owner == self}.map{|cat| cat.mood = "nervous"}
+    Cat.all.select{|cat| cat.owner == self}.map do |cat|
+      cat.mood = "nervous"
+      cat.owner = nil
+    end
   end
   
 end
